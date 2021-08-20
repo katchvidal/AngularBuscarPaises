@@ -10,7 +10,12 @@ import { PaisService } from '../../services/pais.service';
       .bandera{
         width : 60px;
         height: 50px;
+      },
+
+      li{
+        cursor : pointer;
       }
+
     `
   ]
 })
@@ -24,6 +29,8 @@ export class PorPaisComponent{
 
   // Almacenar Paises
   Paises : Country[] = []
+
+  paisesSugeridos : Country[] = []
 
   //  Funcion para Buscar con API -> Servicio Paises
   //  Recibimos el Termino de tipo String del Componente Hijo
@@ -51,8 +58,11 @@ export class PorPaisComponent{
 
 
   surgerencias( termino : string ){
+
     this.terminoError=false
-    
+
+    this.PaisService.buscarPais( termino ).subscribe( paises => this.paisesSugeridos = paises.splice( 0, 5 ),
+    (err) => this.paisesSugeridos = [] )
   }
 
 }

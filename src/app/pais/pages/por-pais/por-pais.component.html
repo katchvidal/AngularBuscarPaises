@@ -1,11 +1,19 @@
 
-<h2> Por Pais</h2>
+<h2> Por Pais( Lenguage en ingles )</h2>
 <hr>
 
 <div class="row">
     <div class="col">
     <app-pais-input (onEnter)="buscar( $event )" (onDebounce)="surgerencias( $event )" placeholder="Buscar por Pais "> </app-pais-input>
     </div>
+
+
+    <ul class="list-gruop">
+        <li class=" list-group-item list-group-item-action" *ngFor="let pais of paisesSugeridos">
+            <a [routerLink]=" ['/pais', pais.alpha2Code]" class="nav-link">  {{ pais.name }} </a>
+        </li>
+    </ul>
+
 </div>
 
 <hr>
